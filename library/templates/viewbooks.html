@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block A %}
+<h2>View page</h2>
+
+<table class="table table-bordered">
+    <tr><th>ID</th>
+        <th>COVER</th>
+        <th>TITLE</th>
+        <th>AUTHOR</th>
+        <th>PRICE</th>
+        <th>DOCUMENT</th>
+    </tr>
+
+    {% for i in b %}
+    <tr><td>{{i.id}}</td>
+        <td><img src="{{i.cover.url}}" height="100px" width="200px"> </td>
+        <td>{{i.title}}</td>
+        <td>{{i.author}}</td>
+        <td>{{i.price}}</td>
+        <td><a href="{{i.pdf.url}}">download</a></td>
+        <td><a href="{% url 'books:detail' i.id  %}" class="btn btn-secondary">view</a></td>
+        <td><a href="{% url 'books:edit' i.id  %}" class="btn btn-light">edit</a></td>
+        <td><a href="{% url 'books:delete' i.id  %}" class="btn btn-danger">delete</a></td>
+
+
+
+
+    </tr>
+    {% endfor %}
+</table>
+
+<ol>
+    {% for i in b %}
+    <li>Book Details</li>
+    <li>{{i.title}}</li>
+        <li>{{i.author}}</li>
+        <li>{{i.price}}</li>
+
+    {% endfor %}
+
+
+</ol>
+
+{% endblock %}
